@@ -38,3 +38,11 @@ const reviews = [
   const prevBtn = document.querySelector(".prev-btn");
   const nextBtn = document.querySelector(".next-btn");
   const randomBtn = document.querySelector(".randpm-btn");
+
+// set starting item
+let currentItem = 0;
+
+// load initial item
+window.addEventListener("DOMContentLoaded", function () {
+  console.log("shake and bake");
+});
