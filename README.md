@@ -2,6 +2,7 @@
 I am studying JavaScript
 
 1. Color Flipper
+2. Counter
 
 Source 
 
