@@ -75,24 +75,48 @@ const menu = [
   ];
 
 const sectionCenter = document.querySelector(".section-center");
+const container = document.querySelector(".btn-container");
 const filterBtns = document.querySelectorAll(".filter-btn");
 
 // load items
 window.addEventListener("DOMContentLoaded", function () {
-  displayMenuItems(menu)
+  displayMenuItems(menu);
+  const categories = menu.reduce(
+    function (values,item) {
+    if (!values.includes(item.category)) {
+      values.push(item.category);
+    }
+  return values;
+  },
+  ["all"]
+  );
+  const categoryBtns = categories.map(function (category) {
+    return `<button type="button" class="filter-btn" type="button"
+    data-id=${category}>
+          ${category}
+        </button>`;
+  })
+  .join("");
+  container.innerHTML = categoryBtns;
 });
 // filter items
 filterBtns.forEach(function (btn) {
 btn.addEventListener("click", function (e) {
-  console.log(e.currentTarget.dataset);
+  const category = e.currentTarget.dataset.id;
+  const menuCategory = menu.filter(function (menuItem) {
+      // console.log(menuItem.category);
+      if (menuItem.category === category) {
+        return menuItem;
+      }
+    });
+    // console.log(menuCategory);
+    if (category === "all") {
+      displayMenuItems(menu);
+    } else {
+      displayMenuItems(menuCategory);
+    }
+  });
 });
-});
-
-
-
-
-
-
 
 function displayMenuItems(menuItems){
   let displayMenu = manuItems.map(function (item) {
